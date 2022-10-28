@@ -1,4 +1,4 @@
-from django.db.models.base import Model
+# from django.db.models.base import Model -> not needed
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import DetailView
@@ -10,7 +10,7 @@ from main_app.models import Comment, Profile, Post, City
 from datetime import datetime
 
 # import the class that will handle basic views
-from django.views import View
+# from django.views import View -> duplicate
 
 # auth imports
 from django.contrib.auth import login, logout, authenticate
@@ -20,13 +20,14 @@ from django.utils.decorators import method_decorator
 
 # Forms
 from .forms import SignUpForm, CreatePostForm
-from django.http import HttpResponse
+# from django.http import HttpResponse
 
 # Create your views here.
 
 
 class Home(TemplateView):
     template_name = 'home.html'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"]=SignUpForm()
@@ -41,6 +42,7 @@ class ProfileUpdate(UpdateView):
     model = Profile
     fields = ['name', 'current_city']
     template_name = "profile_update.html"
+
     def get_success_url(self):
         return reverse("profile_detail", kwargs={'pk': self.object.pk})
 
@@ -48,10 +50,11 @@ class PostDetail(DetailView):
     model = Post
     template_name = "post_detail.html"
 
-    def get_context(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["post"] = Post.objects.filter(user = Profile)
-        return context
+    # not used because the table relationship brought back the data
+    # def get_context(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context["post"] = Post.objects.filter(user = Profile)
+    #     return context
 
 # Signup view
 class SignupClean(View):
@@ -75,6 +78,7 @@ class SignupClean(View):
             context = {"form": form}
             return render(request, "404.html", context)
 
+# remove unused classes
 class Signup(View):
     def get(self, request, **kwargs):
         form = UserCreationForm()
@@ -119,8 +123,10 @@ class PostCreate(CreateView):
             content = request.POST['post-content']
             city = City.objects.get(pk=city_pk)
             profile = request.user.profile
+
             Post.objects.create(title=title, content=content,city=city, profile=profile)
             return redirect('city_detail', pk=city_pk)
+
         except Exception as error:
             return render(request, "city_detail")
             
@@ -142,6 +148,7 @@ class PostUpdate(UpdateView):
 
 class About(TemplateView):
     template_name = 'about.html'
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"]=SignUpForm()

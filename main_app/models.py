@@ -1,10 +1,10 @@
-from django.db import models
 # import models from django
+from django.db import models
 
 from django.contrib.auth.models import User
 
 # model imports from django 
-from django.db.models import Model, CharField, ForeignKey, TextField, DateTimeField, SlugField
+from django.db.models import Model, CharField, ForeignKey, TextField, DateTimeField, SlugField, OneToOneField
 
 #Pretty URL with reverse and slugify
 from django.urls import reverse
@@ -18,7 +18,7 @@ User._meta.get_field('email')._unique = True
 
 # Create your models here.
 class Profile (Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
+    user = OneToOneField(User, on_delete=models.CASCADE, unique=True)
     join_date = DateTimeField(auto_now_add=True)
     name = CharField(max_length=100)
     slug = SlugField(max_length=100, default='no_slugs', unique=False)
@@ -46,6 +46,8 @@ class Post (Model):
 
     def __str__(self):
         return str(self.title) 
+
+    # NOTE could make a model method that would get the time from posting to the current time for display 
 
     class Meta:
         ordering = ['created_at']

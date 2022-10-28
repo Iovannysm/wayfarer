@@ -1,0 +1,173 @@
+main.city-detail {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-areas: 
+        "aside article";
+    margin: 20px 20px;
+
+    aside {
+        grid-area: aside;
+        background: rgb(2,0,36);
+        background: linear-gradient(90deg, $light-purple 0%, rgba(9,9,121,1) 35%, rgba(2,0,36,1) 100%);
+        // border: 2px solid rgb(215, 215, 0);
+        // box-shadow: 4px 4px 4px 4px rgba(215, 215, 0, 0.7);
+        padding: 20px;
+        border-radius: 1%;
+    }
+    article {
+        grid-area: article;
+        background: rgb(2,0,36);
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, $light-blue 100%);
+        // box-shadow: 4px 4px 4px 4px rgba(215, 215, 0, 0.7);
+        padding: 20px;
+        border-radius: 1%;
+    }
+    h1 {
+        color: white;
+        margin-top: 15px;
+    }
+    a.city-posts-create {
+        background-color: white;
+        padding: 15px 20px;
+        margin: 15px 15px 0px 0px;
+        border-radius: 50%;
+        text-align: center;
+    }
+}
+
+div {
+    p.error {
+        color: red;
+    }
+}
+
+div.post-create-modal{
+    #button-city-dropdown {
+        border: 1px solid black;
+        margin-bottom: 10px;
+    }
+    .post-content-textarea {
+        height: 30vh;
+        // vertical-align: top;
+    }
+}
+
+div.delete-post-modal{
+    .modal-body{
+        padding: 1.2rem;
+    }
+    p {
+        color: black;
+        padding: 10px;
+    }
+}
+
+li.post-card {
+    display: grid;
+    grid-template-columns: 1fr 60px;
+    grid-template-areas: 
+        "header ellipsis"
+        "content content";
+    margin-bottom: 15px;
+
+    div.post-header {
+        grid-area: header;
+        justify-self: start;
+        font-size: 1.5rem;
+        img {
+            width: 3rem;
+            border-radius: 10%;
+        }
+    }
+    div.dropdown {
+        grid-area: ellipsis;
+        justify-self: end;
+    }
+    p {
+        grid-area: content;
+        color: $dark-black;
+    }
+}
+
+// Small screen: No Grid on article
+@media only screen and (min-width: 320px) {
+    article.city-detail {
+        margin: 0px 40px 0px 20px; 
+        img {
+            border-radius: 5%;
+            width: 90%;
+        }   
+    }
+    aside.city-detail {
+        li {
+            margin: 3px 0px;
+            font-weight: 800;
+            font-size: 2 rem;
+            margin: 20px 0px;
+            padding: 5px;
+        }
+        img {
+            width: 45px;
+            overflow: hidden;
+            border-radius: 5%;
+        }
+    }
+}
+
+// Large Screen: Aside inline & City Detail with grid
+@media only screen and (min-width: 720px) {
+    aside.city-detail {
+        li {
+            padding: 10px;
+        }
+        img, h5 {
+            display: inline;
+        }
+        img {
+            width: 60px;
+            margin-right: 10px;
+        }
+    }
+    main.city-detail {
+        grid-template-columns: 30vw 70vw; 
+    }   
+    article.city-detail {
+        display: grid;
+        grid-template-rows: 150px 100px 1fr;
+        grid-template-columns: 2fr 3fr;
+        grid-template-areas: 
+            "city-profile city-img"
+            "city-posts-header city-posts-create" 
+            "posts posts";
+    
+        div {
+            grid-area: city-profile;
+        }
+    
+        img {
+            grid-area: city-img;
+            justify-self: end;
+    
+            width: 320px;
+            height: calc(320*9/16px);
+        }
+    
+        h1 {
+            grid-area: city-posts-header;
+            align-self: center;
+        }
+    
+        a {
+            grid-area: city-posts-create;
+            justify-self: end;
+            align-self: center;
+        }
+        ul {
+            grid-area: posts;
+        }
+    }
+}
+
+#post-menu{
+    margin-right: 7vw;
+}

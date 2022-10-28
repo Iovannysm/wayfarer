@@ -1,0 +1,27 @@
+.modal-content {
+    #modal-body-override {
+        padding: 40px 30px 80px 30px;
+    }
+    .modal-header {
+        padding-left: 30px;
+    }
+    label {
+        font-weight: 600;
+    }
+    p {
+        display: flex;
+        flex-direction: column;
+        color: black;
+    }
+    h5 {
+        color: black;
+    }
+    .container-submit-button {
+        display: flex;
+        justify-content: center;
+    }
+    .btn-primary {
+        margin-top: 15px;
+        width: calc(100% - 0px);
+    }
+}

@@ -1,0 +1,34 @@
+// Nav right items
+nav {
+    grid-area: nav;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    img {
+        height: 50px;
+        width: 50px; 
+        border-radius: 50%;
+        margin: 0px;
+    }
+    #user-welcome {
+        padding: 0px;
+        margin: 5px;
+    }
+}
+
+@media only screen and (min-width: 720px) {    
+    .navbar-brand {
+        font-size: 2.0rem; 
+        margin-left: 10px;
+        margin-right: 0px;
+    }
+    .auth-buttons {
+        font-size: 1.5rem;
+        margin: 0px 10px;
+    }
+    .justify-content-end {
+        margin-right: 30px;
+    }
+}
